@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+# Simple Express Server
+  server:
+    build: ./simple-express
+    expose:
+      - 3001
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./simple-express:/app
+    
+# Vue.js client
+  client:
+    build: ./vue-cli-base-feb-2018
+    expose: 
+      - 8080
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./vue-cli-base-feb-2018:/app
+    links:
+      - server
